@@ -1,0 +1,17 @@
+.person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px;
+}
+
+.person__info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 340px;
+}
+
+.person__text {
+}
