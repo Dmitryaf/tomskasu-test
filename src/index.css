@@ -7,7 +7,36 @@
 }
 
 body {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
   font-size: 16px;
+  color: #000;
+  background: #ffffff;
+}
+
+.container {
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.persons {
+  margin: 100px 0;
+}
+
+.persons__titles {
+  display: flex;
+  background-color: #f6f6f6;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 68px;
+}
+
+.persons__title {
+  font-weight: bold;
+  margin-right: 20%;
+}
+
+.persons__title:last-child {
+  margin-right: 0;
 }
