@@ -7,25 +7,29 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Person.module.css';
 
-const Person = () => {
+const Person = (props) => {
   return (
-    <div className={styles.person}>
-      <div className={styles.person__info}>
-        <div className={styles.person__text}>
-          <FontAwesomeIcon icon={faUserCircle} />
-          Ivan
+    <tr className={styles.person}>
+      <td className={styles.person__td}>
+        <FontAwesomeIcon className={styles.person__icon} icon={faUserCircle} />
+        <span className={styles.person__name}>{props.name}</span>
+      </td>
+      <td className={styles.person__td}>{props.lastName}</td>
+      <td colSpan="2" className={styles.person__td}>
+        <div className={styles.person__options}>
+          <div
+            className={`${styles.person__edit} ${styles.person__optionsIcon}`}
+          >
+            <FontAwesomeIcon className={styles.editIco} icon={faPencilAlt} />
+          </div>
+          <div
+            className={`${styles.person__delete} ${styles.person__optionsIcon}`}
+          >
+            <FontAwesomeIcon className={styles.deleteIco} icon={faTimes} />
+          </div>
         </div>
-        <div className={styles.person__text}>Ivanov</div>
-      </div>
-      <div className={styles.person__options}>
-        <div className={styles.person__edit}>
-          <FontAwesomeIcon icon={faPencilAlt} />
-        </div>
-        <div className={styles.person__delete}>
-          <FontAwesomeIcon icon={faTimes} />
-        </div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };
 
