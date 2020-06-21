@@ -6,6 +6,12 @@
   text-decoration: none;
 }
 
+table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
@@ -16,7 +22,6 @@ body {
 
 .container {
   max-width: 1140px;
-  padding: 0 15px;
   margin: 0 auto;
 }
 
@@ -24,19 +29,26 @@ body {
   margin: 100px 0;
 }
 
-.persons__titles {
-  display: flex;
+.persons__title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.persons__thead-tr {
   background-color: #f6f6f6;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 10px 68px;
+  padding: 10px 0;
 }
 
-.persons__title {
+.persons__td {
   font-weight: bold;
-  margin-right: 20%;
+  width: 200px;
+  padding: 10px 60px;
 }
 
-.persons__title:last-child {
-  margin-right: 0;
+@media (max-width: 560px) {
+  .persons__thead {
+    display: none;
+  }
 }
