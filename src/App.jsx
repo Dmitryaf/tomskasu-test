@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Person from './components/Person/Person';
 
 function App() {
+  let [persons, setPersons] = React.useState([]);
+
+  useEffect(() => {
+    const apiUrl = 'http://localhost:3001/persons';
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((persons) => {
+        setPersons(persons);
+      });
+  }, []);
+
   return (
     <div className="App">
       <div className="container">
         <table className="persons">
-          <tbody>
-            <tr className="persons__titles">
-              <td className="persons__title">Имя</td>
-              <td className="persons__title">Фамилия</td>
+          <caption className="persons__title">Сотрудники</caption>
+          <thead className="persons__thead">
+            <tr className="persons__thead-tr">
+              <td className="persons__td">Имя</td>
+              <td colSpan="3" className="persons__td">
+                Фамилия
+              </td>
             </tr>
-          </tbody>
+          </thead>
 
-          <div className="persons__list">
-            <Person />
-          </div>
+          <tbody className="persons__list">
+            {persons.map((person) => {
+              return (
+                <Person
+                  name={person.name}
+                  lastName={person.lastName}
+                  key={person.id}
+                />
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
