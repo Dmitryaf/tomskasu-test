@@ -5,6 +5,7 @@ import AddPersonModal from './components/Modals/AddPersonModal/AddPersonModal';
 
 function App() {
   let [persons, setPersons] = React.useState([]);
+  let [isAddPersonModalOpen, setIsAddPersonModalOpen] = React.useState(false);
 
   const addPerson = (id, name, lastName) => {
     setPersons(
@@ -17,7 +18,7 @@ function App() {
   };
 
   const deletePerson = (id) => {
-    persons.filter((person) => person.id !== id);
+    setPersons(persons.filter((person) => person.id !== id));
   };
 
   const saveModalDetail = (id, name, lastName) => {
@@ -31,8 +32,6 @@ function App() {
     );
   };
 
-  const openAddPersonModal = () => {};
-
   useEffect(() => {
     const apiUrl = 'http://localhost:3001/persons';
     fetch(apiUrl)
@@ -44,10 +43,17 @@ function App() {
 
   return (
     <store.Provider
-      value={{ persons, saveModalDetail, deletePerson, addPerson }}
+      value={{
+        persons,
+        saveModalDetail,
+        deletePerson,
+        addPerson,
+        setIsAddPersonModalOpen,
+      }}
     >
       <div className="App">
         <div className="container">
+          {isAddPersonModalOpen && <AddPersonModal />}
           <table className="persons">
             <caption className="persons__title">Сотрудники</caption>
             <thead className="persons__thead">
@@ -72,8 +78,13 @@ function App() {
               })}
             </tbody>
           </table>
-          <AddPersonModal />
-          <button className="btn" onClick={() => {}}>
+
+          <button
+            className="btn"
+            onClick={() => {
+              setIsAddPersonModalOpen(true);
+            }}
+          >
             Add person
           </button>
         </div>

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   faPencilAlt,
   faTimes,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './Person.module.css';
 import EditPersonModal from '../Modals/EditPersonModal/EditPersonModal';
 
+import store from '../../store';
+import styles from './Person.module.css';
+
 const Person = (props) => {
+  let { deletePerson } = useContext(store);
+
   return (
     <tr className={styles.person}>
       <td className={styles.person__td}>
@@ -26,6 +30,7 @@ const Person = (props) => {
           </div>
           <div
             className={`${styles.person__delete} ${styles.person__optionsIcon}`}
+            onClick={() => deletePerson(props.id)}
           >
             <FontAwesomeIcon className={styles.deleteIco} icon={faTimes} />
           </div>
