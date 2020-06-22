@@ -4,6 +4,7 @@
 }
 
 .person__td {
+  width: 250px;
   padding: 10px 60px;
 }
 
@@ -35,10 +36,23 @@
   margin-right: 10px;
 }
 
+.person__edit:hover {
+  background-color: #e9c975;
+}
+
 .person__delete {
   background-color: #f58383;
   border-radius: 3px;
   border: 1px solid #cc5b5b;
+}
+
+.person__delete:hover {
+  background-color: #dd6c6c;
+}
+
+.person__edit,
+.person__delete {
+  transition: 0.3s;
 }
 
 .editIco,
@@ -68,6 +82,7 @@
   }
 
   .person__td {
+    width: auto;
     padding: 10px 0;
   }
 

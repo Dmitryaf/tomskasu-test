@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Person.module.css';
+import EditPersonModal from '../Modals/EditPersonModal/EditPersonModal';
 
 const Person = (props) => {
   return (
@@ -19,6 +20,7 @@ const Person = (props) => {
         <div className={styles.person__options}>
           <div
             className={`${styles.person__edit} ${styles.person__optionsIcon}`}
+            onClick={() => {}}
           >
             <FontAwesomeIcon className={styles.editIco} icon={faPencilAlt} />
           </div>
