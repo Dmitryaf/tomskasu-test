@@ -5,7 +5,7 @@ const AddPersonModal = () => {
   let inputName = React.createRef();
   let inputLastName = React.createRef();
 
-  let { persons, addPerson } = useContext(store);
+  let { setIsAddPersonModalOpen, persons, addPerson } = useContext(store);
   let [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',
@@ -42,7 +42,12 @@ const AddPersonModal = () => {
   return (
     <div className="modal">
       <div className="modal__body">
-        <button className="modal__close">Назад к списку</button>
+        <button
+          className="modal__close"
+          onClick={() => setIsAddPersonModalOpen(false)}
+        >
+          Назад к списку
+        </button>
         <form className="modal__form" onSubmit={submitHandler}>
           <input
             type="text"
