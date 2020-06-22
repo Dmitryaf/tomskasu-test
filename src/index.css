@@ -26,7 +26,7 @@ body {
 }
 
 .persons {
-  margin: 100px 0;
+  margin: 100px 0 50px 0;
 }
 
 .persons__title {
@@ -41,10 +41,89 @@ body {
   padding: 10px 0;
 }
 
-.persons__td {
+.persons__thead-td {
   font-weight: bold;
   width: 200px;
   padding: 10px 60px;
+}
+
+.btn {
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #0c5fb8;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+  border: 1px solid #ccc;
+  height: 100%;
+}
+
+.modal__body {
+  background: #fff;
+  border-radius: 3px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal__close {
+  display: inline-block;
+  align-self: flex-start;
+  color: #007bff;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal__close:hover {
+  color: #0c5fb8;
+  border-color: #0c5fb8;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.modal__btn-add {
+  align-self: flex-end;
 }
 
 @media (max-width: 560px) {
