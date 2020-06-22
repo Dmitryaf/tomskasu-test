@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const EditPersonModal = (props) => {
+const EditPersonModal = () => {
   return <div className="modal"></div>;
 };
 
