@@ -4,8 +4,8 @@
 }
 
 .person__td {
-  width: 250px;
-  padding: 10px 60px;
+  width: 300px;
+  padding: 10px 50px;
 }
 
 .person__name {
@@ -61,7 +61,12 @@
   color: #6a6666;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  .person__td {
+    width: auto;
+    padding: 10px 40px;
+  }
+
   .person__optionsIcon {
     width: 30px;
     height: 30px;
@@ -82,7 +87,6 @@
   }
 
   .person__td {
-    width: auto;
     padding: 10px 0;
   }
 

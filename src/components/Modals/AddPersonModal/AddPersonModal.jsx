@@ -5,7 +5,7 @@ const AddPersonModal = () => {
   let inputName = React.createRef();
   let inputLastName = React.createRef();
 
-  let { setIsAddPersonModalOpen, persons, addPerson } = useContext(store);
+  let { setIsAddPersonModalOpen, addPerson } = useContext(store);
   let [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',
@@ -33,7 +33,7 @@ const AddPersonModal = () => {
     let newName = inputName.current.value;
     let newLastName = inputLastName.current.value;
     setInputsValue({
-      id: persons.length + 1,
+      id: Date.now(),
       name: newName,
       lastName: newLastName,
     });
@@ -49,22 +49,30 @@ const AddPersonModal = () => {
           Назад к списку
         </button>
         <form className="modal__form" onSubmit={submitHandler}>
-          <input
-            type="text"
-            ref={inputName}
-            value={inputsValue.name}
-            onChange={() => changeValues()}
-            className="modal__input"
-          />
-          <input
-            type="text"
-            ref={inputLastName}
-            value={inputsValue.lastName}
-            onChange={() => changeValues()}
-            className="modal__input"
-          />
+          <label className="modal__label">
+            {'Имя'}
+            <input
+              type="text"
+              ref={inputName}
+              value={inputsValue.name}
+              onChange={() => changeValues()}
+              className="modal__input"
+            />
+          </label>
+
+          <label className="modal__label">
+            {'Фамилия'}
+            <input
+              type="text"
+              ref={inputLastName}
+              value={inputsValue.lastName}
+              onChange={() => changeValues()}
+              className="modal__input"
+            />
+          </label>
+
           <button className="btn modal__btn-add" type="submit">
-            Добавить сотрудника
+            Сохранить
           </button>
         </form>
       </div>

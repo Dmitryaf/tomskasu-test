@@ -5,14 +5,12 @@ import {
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import EditPersonModal from '../Modals/EditPersonModal/EditPersonModal';
 
 import store from '../../store';
 import styles from './Person.module.css';
 
 const Person = (props) => {
   let { deletePerson } = useContext(store);
-
   return (
     <tr className={styles.person}>
       <td className={styles.person__td}>
@@ -24,7 +22,12 @@ const Person = (props) => {
         <div className={styles.person__options}>
           <div
             className={`${styles.person__edit} ${styles.person__optionsIcon}`}
-            onClick={() => {}}
+            onClick={() => {
+              props.setEditPersonModalOpen({
+                currentItem: props.id,
+                isOpen: true,
+              });
+            }}
           >
             <FontAwesomeIcon className={styles.editIco} icon={faPencilAlt} />
           </div>

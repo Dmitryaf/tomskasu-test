@@ -45,7 +45,7 @@ body {
 .persons__thead-td {
   font-weight: bold;
   width: 200px;
-  padding: 10px 60px;
+  padding: 10px 50px;
 }
 
 .btn {
@@ -77,6 +77,7 @@ body {
   background-color: rgba(0, 0, 0, .5);
   border: 1px solid #ccc;
   height: 100%;
+  padding: 0 15px;
 }
 
 .modal__body {
@@ -118,11 +119,17 @@ body {
   border-radius: 3px;
   width: 100%;
   padding: 5px;
-  margin-bottom: 15px;
+  margin: 5px 0 15px;
 }
 
 .modal__btn-add {
   align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .persons__thead-td {
+    padding: 10px 40px;
+  }
 }
 
 @media (max-width: 560px) {
