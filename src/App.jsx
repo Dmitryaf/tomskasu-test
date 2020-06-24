@@ -2,10 +2,15 @@ import React, { useEffect } from 'react';
 import Person from './components/Person/Person';
 import store from './store';
 import AddPersonModal from './components/Modals/AddPersonModal/AddPersonModal';
+import EditPersonModal from './components/Modals/EditPersonModal/EditPersonModal';
 
 function App() {
   let [persons, setPersons] = React.useState([]);
   let [isAddPersonModalOpen, setIsAddPersonModalOpen] = React.useState(false);
+  let [EditPersonModalOpen, setEditPersonModalOpen] = React.useState({
+    currentItem: null,
+    isOpen: false,
+  });
 
   const addPerson = (id, name, lastName) => {
     setPersons(
@@ -21,13 +26,17 @@ function App() {
     setPersons(persons.filter((person) => person.id !== id));
   };
 
-  const saveModalDetail = (id, name, lastName) => {
+  const saveEditedItem = (Editeditem) => {
     setPersons(
       persons.map((person) => {
-        if (person.id === id) {
-          person.name = name;
-          person.lastName = lastName;
+        if (person.id === Editeditem.id) {
+          return {
+            ...person,
+            name: Editeditem.name,
+            lastName: Editeditem.lastName,
+          };
         }
+        return person;
       })
     );
   };
@@ -45,7 +54,7 @@ function App() {
     <store.Provider
       value={{
         persons,
-        saveModalDetail,
+        saveEditedItem,
         deletePerson,
         addPerson,
         setIsAddPersonModalOpen,
@@ -53,7 +62,6 @@ function App() {
     >
       <div className="App">
         <div className="container">
-          {isAddPersonModalOpen && <AddPersonModal />}
           <table className="persons">
             <caption className="persons__title">Сотрудники</caption>
             <thead className="persons__thead">
@@ -72,6 +80,7 @@ function App() {
                     name={person.name}
                     lastName={person.lastName}
                     id={person.id}
+                    setEditPersonModalOpen={setEditPersonModalOpen}
                     key={person.id}
                   />
                 );
@@ -85,8 +94,26 @@ function App() {
               setIsAddPersonModalOpen(true);
             }}
           >
-            Add person
+            Добавить сотрудника
           </button>
+
+          {isAddPersonModalOpen && <AddPersonModal />}
+          {persons.map((person) => {
+            if (
+              EditPersonModalOpen.isOpen &&
+              EditPersonModalOpen.currentItem === person.id
+            ) {
+              return (
+                <EditPersonModal
+                  name={person.name}
+                  lastName={person.lastName}
+                  id={person.id}
+                  setEditPersonModalOpen={setEditPersonModalOpen}
+                  key={person.id}
+                />
+              );
+            }
+          })}
         </div>
       </div>
     </store.Provider>
