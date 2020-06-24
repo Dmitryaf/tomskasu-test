@@ -3,11 +3,16 @@ import Person from './components/Person/Person';
 import store from './store';
 import AddPersonModal from './components/Modals/AddPersonModal/AddPersonModal';
 import EditPersonModal from './components/Modals/EditPersonModal/EditPersonModal';
+import DeletedPersonModal from './components/Modals/DeletedPersonModal/DeletedPersonModal';
 
 function App() {
-  let [persons, setPersons] = React.useState([]);
-  let [isAddPersonModalOpen, setIsAddPersonModalOpen] = React.useState(false);
-  let [EditPersonModalOpen, setEditPersonModalOpen] = React.useState({
+  const [persons, setPersons] = React.useState([]);
+  const [isAddPersonModalOpen, setIsAddPersonModalOpen] = React.useState(false);
+  const [editPersonModalOpen, setEditPersonModalOpen] = React.useState({
+    currentItem: null,
+    isOpen: false,
+  });
+  const [deletedPersonModalOpen, setDeletedPersonModalOpen] = React.useState({
     currentItem: null,
     isOpen: false,
   });
@@ -15,7 +20,7 @@ function App() {
   const addPerson = (id, name, lastName) => {
     setPersons(
       persons.concat({
-        id: id,
+        id,
         name,
         lastName,
       })
@@ -24,6 +29,10 @@ function App() {
 
   const deletePerson = (id) => {
     setPersons(persons.filter((person) => person.id !== id));
+    setDeletedPersonModalOpen({
+      ...deletedPersonModalOpen,
+      isOpen: false,
+    });
   };
 
   const saveEditedItem = (Editeditem) => {
@@ -45,8 +54,8 @@ function App() {
     const apiUrl = 'http://localhost:3001/persons';
     fetch(apiUrl)
       .then((response) => response.json())
-      .then((persons) => {
-        setPersons(persons);
+      .then((resutl) => {
+        setPersons(resutl);
       });
   }, []);
 
@@ -80,7 +89,10 @@ function App() {
                     name={person.name}
                     lastName={person.lastName}
                     id={person.id}
+                    editPersonModalOpen={editPersonModalOpen}
+                    deletedPersonModalOpen={deletedPersonModalOpen}
                     setEditPersonModalOpen={setEditPersonModalOpen}
+                    setDeletedPersonModalOpen={setDeletedPersonModalOpen}
                     key={person.id}
                   />
                 );
@@ -93,22 +105,43 @@ function App() {
             onClick={() => {
               setIsAddPersonModalOpen(true);
             }}
+            type="button"
           >
             Добавить сотрудника
           </button>
 
           {isAddPersonModalOpen && <AddPersonModal />}
+
           {persons.map((person) => {
             if (
-              EditPersonModalOpen.isOpen &&
-              EditPersonModalOpen.currentItem === person.id
+              editPersonModalOpen.isOpen &&
+              editPersonModalOpen.currentItem === person.id
             ) {
               return (
                 <EditPersonModal
                   name={person.name}
                   lastName={person.lastName}
                   id={person.id}
+                  editPersonModalOpen={editPersonModalOpen}
                   setEditPersonModalOpen={setEditPersonModalOpen}
+                  key={person.id}
+                />
+              );
+            }
+          })}
+
+          {persons.map((person) => {
+            if (
+              deletedPersonModalOpen.isOpen &&
+              deletedPersonModalOpen.currentItem === person.id
+            ) {
+              return (
+                <DeletedPersonModal
+                  name={person.name}
+                  lastName={person.lastName}
+                  id={person.id}
+                  deletedPersonModalOpen={deletedPersonModalOpen}
+                  setDeletedPersonModalOpen={setDeletedPersonModalOpen}
                   key={person.id}
                 />
               );

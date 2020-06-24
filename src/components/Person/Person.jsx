@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   faPencilAlt,
   faTimes,
   faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import store from '../../store';
 import styles from './Person.module.css';
 
 const Person = (props) => {
-  let { deletePerson } = useContext(store);
   return (
     <tr className={styles.person}>
       <td className={styles.person__td}>
@@ -33,7 +30,12 @@ const Person = (props) => {
           </div>
           <div
             className={`${styles.person__delete} ${styles.person__optionsIcon}`}
-            onClick={() => deletePerson(props.id)}
+            onClick={() => {
+              props.setDeletedPersonModalOpen({
+                currentItem: props.id,
+                isOpen: true,
+              });
+            }}
           >
             <FontAwesomeIcon className={styles.deleteIco} icon={faTimes} />
           </div>

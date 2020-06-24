@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import store from '../../../store';
 
 const EditPersonModal = (props) => {
-  let inputName = React.createRef();
-  let inputLastName = React.createRef();
+  const inputName = React.createRef();
+  const inputLastName = React.createRef();
 
-  let { saveEditedItem } = useContext(store);
-  let [itemValue, setItemValue] = useState({
+  const { saveEditedItem } = useContext(store);
+  const [itemValue, setItemValue] = useState({
     id: props.id,
     name: props.name,
     lastName: props.lastName,
@@ -36,15 +36,17 @@ const EditPersonModal = (props) => {
           className="modal__close"
           onClick={() =>
             props.setEditPersonModalOpen({
+              ...props.editPersonalModalOpen,
               isOpen: false,
             })
           }
+          type="button"
         >
           Назад к списку
         </button>
         <form className="modal__form" onSubmit={(e) => submitHandler(e)}>
           <label className="modal__label">
-            {'Имя'}
+            Имя
             <input
               type="text"
               ref={inputName}
@@ -55,7 +57,7 @@ const EditPersonModal = (props) => {
           </label>
 
           <label className="modal__label">
-            {'Фамилия'}
+            Фамилия
             <input
               type="text"
               ref={inputLastName}
@@ -65,7 +67,7 @@ const EditPersonModal = (props) => {
             />
           </label>
 
-          <button className="btn modal__btn-add" type="submit">
+          <button className="btn btn_end" type="submit">
             Сохранить
           </button>
         </form>

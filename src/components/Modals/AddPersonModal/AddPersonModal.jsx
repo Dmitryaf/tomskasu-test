@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import store from '../../../store';
 
 const AddPersonModal = () => {
-  let inputName = React.createRef();
-  let inputLastName = React.createRef();
+  const inputName = React.createRef();
+  const inputLastName = React.createRef();
 
-  let { setIsAddPersonModalOpen, addPerson } = useContext(store);
-  let [inputsValue, setInputsValue] = useState({
+  const { setIsAddPersonModalOpen, addPerson } = useContext(store);
+  const [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',
     lastName: '',
@@ -30,8 +30,8 @@ const AddPersonModal = () => {
   };
 
   const changeValues = () => {
-    let newName = inputName.current.value;
-    let newLastName = inputLastName.current.value;
+    const newName = inputName.current.value;
+    const newLastName = inputLastName.current.value;
     setInputsValue({
       id: Date.now(),
       name: newName,
@@ -45,13 +45,15 @@ const AddPersonModal = () => {
         <button
           className="modal__close"
           onClick={() => setIsAddPersonModalOpen(false)}
+          type="button"
         >
           Назад к списку
         </button>
         <form className="modal__form" onSubmit={submitHandler}>
-          <label className="modal__label">
-            {'Имя'}
+          <label htmlFor="inputName" className="modal__label">
+            Имя
             <input
+              id="inputName"
               type="text"
               ref={inputName}
               value={inputsValue.name}
@@ -60,9 +62,10 @@ const AddPersonModal = () => {
             />
           </label>
 
-          <label className="modal__label">
-            {'Фамилия'}
+          <label htmlFor="inputLastName" className="modal__label">
+            Фамилия
             <input
+              id="inputLastName"
               type="text"
               ref={inputLastName}
               value={inputsValue.lastName}
@@ -71,7 +74,7 @@ const AddPersonModal = () => {
             />
           </label>
 
-          <button className="btn modal__btn-add" type="submit">
+          <button className="btn btn_end" type="submit">
             Сохранить
           </button>
         </form>
