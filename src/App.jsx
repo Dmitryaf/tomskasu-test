@@ -128,6 +128,7 @@ function App() {
                 />
               );
             }
+            return false;
           })}
 
           {persons.map((person) => {
@@ -146,6 +147,7 @@ function App() {
                 />
               );
             }
+            return false;
           })}
         </div>
       </div>

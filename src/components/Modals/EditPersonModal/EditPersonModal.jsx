@@ -53,6 +53,7 @@ const EditPersonModal = (props) => {
               value={itemValue.name}
               onChange={() => changeValues()}
               className="modal__input"
+              placeholder="Введите имя"
             />
           </label>
 
@@ -64,6 +65,7 @@ const EditPersonModal = (props) => {
               value={itemValue.lastName}
               onChange={() => changeValues()}
               className="modal__input"
+              placeholder="Введите фамилию"
             />
           </label>
 

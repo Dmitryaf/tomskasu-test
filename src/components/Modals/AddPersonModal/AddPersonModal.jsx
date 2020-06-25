@@ -59,6 +59,7 @@ const AddPersonModal = () => {
               value={inputsValue.name}
               onChange={() => changeValues()}
               className="modal__input"
+              placeholder="Введите имя"
             />
           </label>
 
@@ -71,6 +72,7 @@ const AddPersonModal = () => {
               value={inputsValue.lastName}
               onChange={() => changeValues()}
               className="modal__input"
+              placeholder="Введите фамилию"
             />
           </label>
 
