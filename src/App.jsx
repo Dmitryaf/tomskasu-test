@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import Person from './components/Person/Person';
 import store from './store';
 import AddPersonModal from './components/Modals/AddPersonModal/AddPersonModal';
@@ -51,11 +52,11 @@ function App() {
   };
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:3001/persons';
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((resutl) => {
-        setPersons(resutl);
+    axios
+      .get('http://localhost:3001/persons')
+      .then((response) => setPersons(response.data))
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 

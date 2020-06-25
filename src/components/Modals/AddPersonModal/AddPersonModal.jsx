@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import store from '../../../store';
 
 const AddPersonModal = () => {
@@ -14,7 +15,14 @@ const AddPersonModal = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     if (inputsValue.name.trim() && inputsValue.lastName.trim()) {
+      axios
+        .post('http://localhost:3001/persons', inputsValue)
+        .then((response) => {
+          console.log(response);
+        });
+
       addPerson(
         inputsValue.id,
         inputsValue.name.trim(),
@@ -49,7 +57,11 @@ const AddPersonModal = () => {
         >
           Назад к списку
         </button>
-        <form className="modal__form" onSubmit={submitHandler}>
+        <form
+          className="modal__form"
+          onSubmit={(e) => submitHandler(e)}
+          method="post"
+        >
           <label htmlFor="inputName" className="modal__label">
             Имя
             <input

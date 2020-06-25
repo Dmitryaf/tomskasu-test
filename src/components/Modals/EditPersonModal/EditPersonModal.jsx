@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import store from '../../../store';
 
 const EditPersonModal = (props) => {
@@ -14,7 +15,13 @@ const EditPersonModal = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     if (itemValue.name && itemValue.lastName) {
+      axios
+        .put(`http://localhost:3001/persons/${props.id}`, itemValue)
+        .then((response) => {
+          console.log(response);
+        });
       saveEditedItem(itemValue);
     }
   };
