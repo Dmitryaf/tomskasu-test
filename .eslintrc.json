@@ -2,7 +2,13 @@
   "env": {
     "browser": true
   },
-  "extends": ["eslint", "plugin:react", "airbnb", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react",
+    "airbnb",
+    "prettier",
+    "airbnb/hooks"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,5 +17,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "prettier"],
-  "rules": {}
+  "rules": {
+    "no-console": "off"
+  }
 }
