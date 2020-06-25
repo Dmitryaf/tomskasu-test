@@ -1,9 +1,11 @@
 {
-  "persons": [{
+  "persons": [
+    {
       "id": 1,
       "name": "Павел",
       "lastName": "Иванов"
-    }, {
+    },
+    {
       "id": 2,
       "name": "Иван",
       "lastName": "Иванов"
