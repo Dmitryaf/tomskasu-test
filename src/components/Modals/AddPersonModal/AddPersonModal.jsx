@@ -6,7 +6,7 @@ const AddPersonModal = () => {
   const inputName = React.createRef();
   const inputLastName = React.createRef();
 
-  const { setIsAddPersonModalOpen, addPerson } = useContext(store);
+  const { setIsAddPersonModalOpen, addPerson, persons } = useContext(store);
   const [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',
@@ -41,7 +41,7 @@ const AddPersonModal = () => {
     const newName = inputName.current.value;
     const newLastName = inputLastName.current.value;
     setInputsValue({
-      id: Date.now(),
+      id: persons[persons.length - 1].id + 1,
       name: newName,
       lastName: newLastName,
     });
