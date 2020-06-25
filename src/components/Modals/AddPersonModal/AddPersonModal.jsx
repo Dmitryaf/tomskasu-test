@@ -63,13 +63,6 @@ const AddPersonModal = () => {
   return (
     <div className="modal">
       <div className="modal__body">
-        <button
-          className="modal__close"
-          onClick={() => setIsAddPersonModalOpen(false)}
-          type="button"
-        >
-          Назад к списку
-        </button>
         <form
           className="modal__form"
           onSubmit={(e) => submitHandler(e)}
@@ -101,9 +94,19 @@ const AddPersonModal = () => {
             />
           </label>
 
-          <button className="btn btn_end" type="submit">
-            Сохранить
-          </button>
+          <div className="modal__btns">
+            <button
+              className="btn"
+              onClick={() => setIsAddPersonModalOpen(false)}
+              type="button"
+            >
+              Закрыть
+            </button>
+
+            <button className="btn" type="submit">
+              Добавить
+            </button>
+          </div>
         </form>
       </div>
     </div>

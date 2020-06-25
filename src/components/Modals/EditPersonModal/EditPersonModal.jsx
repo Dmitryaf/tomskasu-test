@@ -39,7 +39,7 @@ const EditPersonModal = (props) => {
     let newName = inputName.current.value;
     let newLastName = inputLastName.current.value;
     setItemValue({
-      id: props.id,
+      ...itemValue,
       name: newName.trim(),
       lastName: newLastName.trim(),
     });
@@ -48,18 +48,6 @@ const EditPersonModal = (props) => {
   return (
     <div className="modal">
       <div className="modal__body">
-        <button
-          className="modal__close"
-          onClick={() =>
-            props.setEditPersonModalOpen({
-              ...props.editPersonalModalOpen,
-              isOpen: false,
-            })
-          }
-          type="button"
-        >
-          Назад к списку
-        </button>
         <form className="modal__form" onSubmit={(e) => submitHandler(e)}>
           <label className="modal__label">
             Имя
@@ -84,10 +72,24 @@ const EditPersonModal = (props) => {
               placeholder="Введите фамилию"
             />
           </label>
+          <div className="modal__btns">
+            <button
+              className="btn"
+              onClick={() =>
+                props.setEditPersonModalOpen({
+                  ...props.editPersonalModalOpen,
+                  isOpen: false,
+                })
+              }
+              type="button"
+            >
+              Закрыть
+            </button>
 
-          <button className="btn btn_end" type="submit">
-            Сохранить
-          </button>
+            <button className="btn" type="submit">
+              Сохранить
+            </button>
+          </div>
         </form>
       </div>
     </div>

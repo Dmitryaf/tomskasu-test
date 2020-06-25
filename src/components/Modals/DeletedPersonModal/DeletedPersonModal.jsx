@@ -31,18 +31,6 @@ const DeletedPersonModal = (props) => {
           onSubmit={(e) => submitHandler(e)}
           method="delete"
         >
-          <button
-            className="modal__close"
-            onClick={() =>
-              props.setDeletedPersonModalOpen({
-                ...props.deletedPersonModalOpen,
-                isOpen: false,
-              })
-            }
-            type="button"
-          >
-            Назад к списку
-          </button>
           <div className="modal__notification">
             <p>
               Удалить сотрудника:
@@ -50,10 +38,24 @@ const DeletedPersonModal = (props) => {
               <span> {props.lastName} </span>?
             </p>
           </div>
+          <div className="modal__btns">
+            <button
+              className="btn"
+              onClick={() =>
+                props.setDeletedPersonModalOpen({
+                  ...props.deletedPersonModalOpen,
+                  isOpen: false,
+                })
+              }
+              type="button"
+            >
+              Закрыть
+            </button>
 
-          <button className="btn btn_end btn_red" type="submit">
-            Удалить
-          </button>
+            <button className="btn btn_red" type="submit">
+              Удалить
+            </button>
+          </div>
         </form>
       </div>
     </div>

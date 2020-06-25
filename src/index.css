@@ -129,6 +129,10 @@ body {
   width: 100%;
 }
 
+.modal__label {
+  margin: 5px 0 15px;
+}
+
 .modal__input {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -137,7 +141,7 @@ body {
   border-radius: 3px;
   width: 100%;
   padding: 5px;
-  margin: 5px 0 15px;
+  margin-top: 5px;
   transition: 0.3s;
 }
 
@@ -145,8 +149,16 @@ body {
   border-color: #0c5fb8;
 }
 
+.modal__btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 .modal__notification {
-  margin: 10px 0 30px;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0 20px;
 }
 
 @media (max-width: 768px) {

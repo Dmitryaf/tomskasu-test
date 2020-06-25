@@ -78,10 +78,10 @@ function App() {
       progress: undefined,
     });
 
-  const notifyError = () =>
-    toast.error('Произошла ошибка!', {
+  const notifySuccessEdited = () =>
+    toast.success('Изменения сохранены!', {
       position: 'top-right',
-      autoClose: 2000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -89,10 +89,10 @@ function App() {
       progress: undefined,
     });
 
-  const notifySuccessEdited = () =>
-    toast.success('Изменения сохранены!', {
+  const notifyError = () =>
+    toast.error('Произошла ошибка!', {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
