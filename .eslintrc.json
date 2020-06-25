@@ -2,12 +2,7 @@
   "env": {
     "browser": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "airbnb",
-    "prettier"
-  ],
+  "extends": ["eslint", "plugin:react", "airbnb", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -15,7 +10,6 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "ignorePatterns": ["serviceWorker.js"],
   "plugins": ["react", "prettier"],
   "rules": {}
 }
