@@ -1,6 +1,11 @@
 .person {
   border-bottom: 1px solid #cccccc;
   padding: 10px 20px;
+  transition: 0.3s;
+}
+
+.person:hover {
+  background: #ccccccb2;
 }
 
 .person__td {

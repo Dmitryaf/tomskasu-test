@@ -13,6 +13,7 @@ const AddPersonModal = () => {
     notifySuccessAdd,
     notifyError,
   } = useContext(store);
+
   const [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',

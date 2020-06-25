@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import Person from './components/Person/Person';
 import store from './store';
 import AddPersonModal from './components/Modals/AddPersonModal/AddPersonModal';
 import EditPersonModal from './components/Modals/EditPersonModal/EditPersonModal';
 import DeletedPersonModal from './components/Modals/DeletedPersonModal/DeletedPersonModal';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -140,11 +140,9 @@ function App() {
               {persons.map((person) => {
                 return (
                   <Person
+                    id={person.id}
                     name={person.name}
                     lastName={person.lastName}
-                    id={person.id}
-                    editPersonModalOpen={editPersonModalOpen}
-                    deletedPersonModalOpen={deletedPersonModalOpen}
                     setEditPersonModalOpen={setEditPersonModalOpen}
                     setDeletedPersonModalOpen={setDeletedPersonModalOpen}
                     key={person.id}
@@ -173,9 +171,9 @@ function App() {
             ) {
               return (
                 <EditPersonModal
+                  id={person.id}
                   name={person.name}
                   lastName={person.lastName}
-                  id={person.id}
                   editPersonModalOpen={editPersonModalOpen}
                   setEditPersonModalOpen={setEditPersonModalOpen}
                   key={person.id}
@@ -192,9 +190,9 @@ function App() {
             ) {
               return (
                 <DeletedPersonModal
+                  id={person.id}
                   name={person.name}
                   lastName={person.lastName}
-                  id={person.id}
                   deletedPersonModalOpen={deletedPersonModalOpen}
                   setDeletedPersonModalOpen={setDeletedPersonModalOpen}
                   key={person.id}

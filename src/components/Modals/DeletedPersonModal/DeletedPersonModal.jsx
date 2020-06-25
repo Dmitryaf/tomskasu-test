@@ -3,16 +3,24 @@ import axios from 'axios';
 import store from '../../../store';
 
 const DeletedPersonModal = (props) => {
+  const {
+    id,
+    name,
+    lastName,
+    deletedPersonModalOpen,
+    setDeletedPersonModalOpen,
+  } = props;
+
   const { deletePerson, notifySuccessDelete, notifyError } = useContext(store);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     axios
-      .delete(`http://localhost:3001/persons/${props.id}`)
+      .delete(`http://localhost:3001/persons/${id}`)
       .then((response) => {
         if (response.status === 200) {
-          deletePerson(props.id);
+          deletePerson(id);
 
           notifySuccessDelete();
         }
@@ -34,16 +42,16 @@ const DeletedPersonModal = (props) => {
           <div className="modal__notification">
             <p>
               Удалить сотрудника:
-              <span> {props.name} </span>
-              <span> {props.lastName} </span>?
+              <span>{name}</span>
+              <span> {lastName} ?</span>
             </p>
           </div>
           <div className="modal__btns">
             <button
               className="btn"
               onClick={() =>
-                props.setDeletedPersonModalOpen({
-                  ...props.deletedPersonModalOpen,
+                setDeletedPersonModalOpen({
+                  ...deletedPersonModalOpen,
                   isOpen: false,
                 })
               }

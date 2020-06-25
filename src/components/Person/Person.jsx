@@ -8,20 +8,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Person.module.css';
 
 const Person = (props) => {
+  const {
+    id,
+    name,
+    lastName,
+    setEditPersonModalOpen,
+    setDeletedPersonModalOpen,
+  } = props;
+
   return (
     <tr className={styles.person}>
       <td className={styles.person__td}>
         <FontAwesomeIcon className={styles.person__icon} icon={faUserCircle} />
-        <span className={styles.person__name}>{props.name}</span>
+        <span className={styles.person__name}>{name}</span>
       </td>
-      <td className={styles.person__td}>{props.lastName}</td>
+      <td className={styles.person__td}>{lastName}</td>
       <td colSpan="2" className={styles.person__td}>
         <div className={styles.person__options}>
           <div
             className={`${styles.person__edit} ${styles.person__optionsIcon}`}
             onClick={() => {
-              props.setEditPersonModalOpen({
-                currentItem: props.id,
+              setEditPersonModalOpen({
+                currentItem: id,
                 isOpen: true,
               });
             }}
@@ -31,8 +39,8 @@ const Person = (props) => {
           <div
             className={`${styles.person__delete} ${styles.person__optionsIcon}`}
             onClick={() => {
-              props.setDeletedPersonModalOpen({
-                currentItem: props.id,
+              setDeletedPersonModalOpen({
+                currentItem: id,
                 isOpen: true,
               });
             }}

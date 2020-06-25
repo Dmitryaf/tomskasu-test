@@ -3,16 +3,25 @@ import axios from 'axios';
 import store from '../../../store';
 
 const EditPersonModal = (props) => {
+  const {
+    id,
+    name,
+    lastName,
+    editPersonalModalOpen,
+    setEditPersonModalOpen,
+  } = props;
+
   const inputName = React.createRef();
   const inputLastName = React.createRef();
 
   const { saveEditedItem, notifySuccessEdited, notifyError } = useContext(
     store
   );
+
   const [itemValue, setItemValue] = useState({
-    id: props.id,
-    name: props.name,
-    lastName: props.lastName,
+    id,
+    name,
+    lastName,
   });
 
   const submitHandler = (e) => {
@@ -20,7 +29,7 @@ const EditPersonModal = (props) => {
 
     if (itemValue.name && itemValue.lastName) {
       axios
-        .put(`http://localhost:3001/persons/${props.id}`, itemValue)
+        .put(`http://localhost:3001/persons/${id}`, itemValue)
         .then((response) => {
           if (response.status === 200) {
             saveEditedItem(itemValue);
@@ -36,8 +45,8 @@ const EditPersonModal = (props) => {
   };
 
   const changeValues = () => {
-    let newName = inputName.current.value;
-    let newLastName = inputLastName.current.value;
+    const newName = inputName.current.value;
+    const newLastName = inputLastName.current.value;
     setItemValue({
       ...itemValue,
       name: newName.trim(),
@@ -49,10 +58,11 @@ const EditPersonModal = (props) => {
     <div className="modal">
       <div className="modal__body">
         <form className="modal__form" onSubmit={(e) => submitHandler(e)}>
-          <label className="modal__label">
+          <label htmlFor="inputName" className="modal__label">
             Имя
             <input
               type="text"
+              id="inputName"
               ref={inputName}
               value={itemValue.name}
               onChange={() => changeValues()}
@@ -61,10 +71,11 @@ const EditPersonModal = (props) => {
             />
           </label>
 
-          <label className="modal__label">
+          <label htmlFor="inputLastName" className="modal__label">
             Фамилия
             <input
               type="text"
+              id="inputLastName"
               ref={inputLastName}
               value={itemValue.lastName}
               onChange={() => changeValues()}
@@ -74,14 +85,14 @@ const EditPersonModal = (props) => {
           </label>
           <div className="modal__btns">
             <button
+              type="button"
               className="btn"
               onClick={() =>
-                props.setEditPersonModalOpen({
-                  ...props.editPersonalModalOpen,
+                setEditPersonModalOpen({
+                  ...editPersonalModalOpen,
                   isOpen: false,
                 })
               }
-              type="button"
             >
               Закрыть
             </button>
