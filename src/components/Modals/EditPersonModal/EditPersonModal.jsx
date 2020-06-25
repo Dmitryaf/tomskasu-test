@@ -6,7 +6,9 @@ const EditPersonModal = (props) => {
   const inputName = React.createRef();
   const inputLastName = React.createRef();
 
-  const { saveEditedItem } = useContext(store);
+  const { saveEditedItem, notifySuccessEdited, notifyError } = useContext(
+    store
+  );
   const [itemValue, setItemValue] = useState({
     id: props.id,
     name: props.name,
@@ -20,9 +22,16 @@ const EditPersonModal = (props) => {
       axios
         .put(`http://localhost:3001/persons/${props.id}`, itemValue)
         .then((response) => {
-          console.log(response);
+          if (response.status === 200) {
+            saveEditedItem(itemValue);
+
+            notifySuccessEdited();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError();
         });
-      saveEditedItem(itemValue);
     }
   };
 

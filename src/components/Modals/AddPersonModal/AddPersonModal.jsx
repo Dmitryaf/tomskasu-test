@@ -6,7 +6,13 @@ const AddPersonModal = () => {
   const inputName = React.createRef();
   const inputLastName = React.createRef();
 
-  const { setIsAddPersonModalOpen, addPerson, persons } = useContext(store);
+  const {
+    setIsAddPersonModalOpen,
+    addPerson,
+    persons,
+    notifySuccessAdd,
+    notifyError,
+  } = useContext(store);
   const [inputsValue, setInputsValue] = useState({
     id: null,
     name: '',
@@ -20,20 +26,27 @@ const AddPersonModal = () => {
       axios
         .post('http://localhost:3001/persons', inputsValue)
         .then((response) => {
-          console.log(response);
+          if (response.status === 201) {
+            addPerson(
+              inputsValue.id,
+              inputsValue.name.trim(),
+              inputsValue.lastName.trim()
+            );
+
+            setInputsValue({
+              id: null,
+              name: '',
+              lastName: '',
+            });
+
+            notifySuccessAdd();
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+
+          notifyError();
         });
-
-      addPerson(
-        inputsValue.id,
-        inputsValue.name.trim(),
-        inputsValue.lastName.trim()
-      );
-
-      setInputsValue({
-        id: null,
-        name: '',
-        lastName: '',
-      });
     }
   };
 

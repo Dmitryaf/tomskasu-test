@@ -3,7 +3,7 @@ import axios from 'axios';
 import store from '../../../store';
 
 const DeletedPersonModal = (props) => {
-  const { deletePerson } = useContext(store);
+  const { deletePerson, notifySuccessDelete, notifyError } = useContext(store);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -11,9 +11,16 @@ const DeletedPersonModal = (props) => {
     axios
       .delete(`http://localhost:3001/persons/${props.id}`)
       .then((response) => {
-        console.log(response);
+        if (response.status === 200) {
+          deletePerson(props.id);
+
+          notifySuccessDelete();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        notifyError();
       });
-    deletePerson(props.id);
   };
 
   return (
