@@ -1,6 +1,6 @@
-## Available Scripts
+## Для запуска проекта:
 
-In the project directory, you can run:
+### `npm run dev`
 
 ### `npm start`
 
