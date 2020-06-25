@@ -17,6 +17,7 @@
     "react-toastify": "^6.0.6"
   },
   "scripts": {
+    "dev": "concurrently \"npm start\" \"npm run json-server\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "json-server": "json-server --watch db.json --port 3001",
