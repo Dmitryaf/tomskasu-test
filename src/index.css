@@ -22,13 +22,15 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 0 15px;
 }
 
 .persons {
-  margin: 100px 0 50px 0;
+  margin-bottom: 50px;
 }
 
 .persons__title {
@@ -51,6 +53,7 @@ body {
 
 .btn {
   display: flex;
+  align-self: flex-start;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   color: #fff;
@@ -149,6 +152,10 @@ body {
 @media (max-width: 768px) {
   .persons__thead-td {
     padding: 10px 40px;
+  }
+
+  .btn {
+    align-self: center;
   }
 }
 
