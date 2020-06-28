@@ -7,7 +7,7 @@ const EditPersonModal = (props) => {
     id,
     name,
     lastName,
-    editPersonalModalOpen,
+    editPersonModalOpen,
     setEditPersonModalOpen,
   } = props;
 
@@ -35,6 +35,11 @@ const EditPersonModal = (props) => {
             saveEditedItem(itemValue);
 
             notifySuccessEdited();
+
+            setEditPersonModalOpen({
+              ...editPersonModalOpen,
+              isOpen: false,
+            });
           }
         })
         .catch((error) => {
@@ -89,7 +94,7 @@ const EditPersonModal = (props) => {
               className="btn"
               onClick={() =>
                 setEditPersonModalOpen({
-                  ...editPersonalModalOpen,
+                  ...editPersonModalOpen,
                   isOpen: false,
                 })
               }

@@ -25,7 +25,8 @@ const Person = (props) => {
       <td className={styles.person__td}>{lastName}</td>
       <td colSpan="2" className={styles.person__td}>
         <div className={styles.person__options}>
-          <div
+          <button
+            type="button"
             className={`${styles.person__edit} ${styles.person__optionsIcon}`}
             onClick={() => {
               setEditPersonModalOpen({
@@ -35,8 +36,9 @@ const Person = (props) => {
             }}
           >
             <FontAwesomeIcon className={styles.editIco} icon={faPencilAlt} />
-          </div>
-          <div
+          </button>
+          <button
+            type="button"
             className={`${styles.person__delete} ${styles.person__optionsIcon}`}
             onClick={() => {
               setDeletedPersonModalOpen({
@@ -46,7 +48,7 @@ const Person = (props) => {
             }}
           >
             <FontAwesomeIcon className={styles.deleteIco} icon={faTimes} />
-          </div>
+          </button>
         </div>
       </td>
     </tr>

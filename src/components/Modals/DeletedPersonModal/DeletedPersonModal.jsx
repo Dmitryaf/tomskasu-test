@@ -23,6 +23,11 @@ const DeletedPersonModal = (props) => {
           deletePerson(id);
 
           notifySuccessDelete();
+
+          setDeletedPersonModalOpen({
+            ...deletedPersonModalOpen,
+            isOpen: false,
+          });
         }
       })
       .catch((error) => {
@@ -43,7 +48,7 @@ const DeletedPersonModal = (props) => {
             <p>
               Удалить сотрудника:
               <span>{name}</span>
-              <span> {lastName} ?</span>
+              <span>{lastName} ?</span>
             </p>
           </div>
           <div className="modal__btns">

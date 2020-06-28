@@ -15,7 +15,7 @@ const AddPersonModal = () => {
   } = useContext(store);
 
   const [inputsValue, setInputsValue] = useState({
-    id: null,
+    id: persons.length !== 0 ? persons[persons.length - 1].id + 1 : 1,
     name: '',
     lastName: '',
   });
@@ -40,6 +40,8 @@ const AddPersonModal = () => {
               lastName: '',
             });
 
+            setIsAddPersonModalOpen(false);
+
             notifySuccessAdd();
           }
         })
@@ -55,7 +57,7 @@ const AddPersonModal = () => {
     const newName = inputName.current.value;
     const newLastName = inputLastName.current.value;
     setInputsValue({
-      id: persons[persons.length - 1].id + 1,
+      ...inputsValue,
       name: newName,
       lastName: newLastName,
     });
