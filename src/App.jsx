@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import Person from './components/Person/Person';
@@ -9,16 +9,20 @@ import DeletedPersonModal from './components/Modals/DeletedPersonModal/DeletedPe
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [persons, setPersons] = React.useState([]);
+  const [persons, setPersons] = useState([]);
 
-  const [isAddPersonModalOpen, setIsAddPersonModalOpen] = React.useState(false);
+  const [isAddPersonModalOpen, setIsAddPersonModalOpen] = useState(false);
 
-  const [editPersonModalOpen, setEditPersonModalOpen] = React.useState({
+  const [editPersonModalOpen, setEditPersonModalOpen] = useState({
     currentItem: null,
     isOpen: false,
   });
 
   const [deletedPersonModalOpen, setDeletedPersonModalOpen] = React.useState({
+    currentItem: null,
+    isOpen: false,
+  });
+  const [modal, setModal] = useState({
     currentItem: null,
     isOpen: false,
   });

@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import store from '../../../store';
 
 const AddPersonModal = () => {
-  const inputName = React.createRef();
-  const inputLastName = React.createRef();
+  const inputName = useRef();
+  const inputLastName = useRef();
 
   const {
     setIsAddPersonModalOpen,
